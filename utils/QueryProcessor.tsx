@@ -31,12 +31,15 @@ export default function QueryProcessor(query: string): string {
     return largest.toString();
   }
 
-  // Otherwise, assume it's asking for a sum
-  if (numbers && numbers.length >= 2) {
+  if (query.toLowerCase().includes("plus")) {
+    if (numbers && numbers.length >= 2) {
     const num1 = parseFloat(numbers[0]);
     const num2 = parseFloat(numbers[1]);
     return (num1 + num2).toString();
   }
+  }
+  // Otherwise, assume it's asking for a sum
+
 
   return "";
 }
