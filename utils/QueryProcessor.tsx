@@ -15,9 +15,12 @@ export default function QueryProcessor(query: string): string {
     return "ianis_fr";
   }
 
-  if (query.toLowerCase().includes("45")) {
-    return "97";
+  // Extract numbers from the query and return their sum
+  const numbers = query.match(/-?\d+\.?\d*/g);
+  if (numbers && numbers.length >= 2) {
+    const num1 = parseFloat(numbers[0]);
+    const num2 = parseFloat(numbers[1]);
+    return (num1 + num2).toString();
   }
-
   return "";
 }
