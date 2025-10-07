@@ -37,4 +37,6 @@ export default function QueryProcessor(query: string): string {
     const num2 = parseFloat(numbers[1]);
     return (num1 + num2).toString();
   }
+
+  return "";
 }
