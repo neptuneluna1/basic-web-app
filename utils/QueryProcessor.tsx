@@ -19,7 +19,7 @@ export default function QueryProcessor(query: string): string {
   const numbers = query.match(/-?\d+\.?\d*/g);
 
   // Check if it's asking for the largest number
-  if (query.toLowerCase().includes("largest") || query.toLowerCase().includes("biggest") || query.toLowerCase().includes("max")) {
+  if (query.toLowerCase().includes("largest")) {
     const nums = query.split("largest: ")[1].split(", ");
     let largest = parseInt(nums[0]);
     for (let i = 1; i < nums.length; i++) {
