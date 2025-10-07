@@ -20,11 +20,15 @@ export default function QueryProcessor(query: string): string {
 
   // Check if it's asking for the largest number
   if (query.toLowerCase().includes("largest") || query.toLowerCase().includes("biggest") || query.toLowerCase().includes("max")) {
-    if (numbers && numbers.length >= 1) {
-      const numArray = numbers.map(n => parseFloat(n));
-      const largest = Math.max(...numArray);
-      return largest.toString();
+    const nums = query.split("largest: ")[1].split(", ");
+    let largest = parseInt(nums[0]);
+    for (let i = 1; i < nums.length; i++) {
+      const num = parseInt(nums[i]);
+      if (num > largest) {
+        largest = num;
+      }
     }
+    return largest.toString();
   }
 
   // Otherwise, assume it's asking for a sum
