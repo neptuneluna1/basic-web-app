@@ -15,19 +15,22 @@ export default function QueryProcessor(query: string): string {
     return "ianis_fr";
   }
 
-  // Extract numbers from the query and return their sum
+  // Extract numbers from the query
   const numbers = query.match(/-?\d+\.?\d*/g);
+
+  // Check if it's asking for the largest number
+  if (query.toLowerCase().includes("largest") || query.toLowerCase().includes("biggest") || query.toLowerCase().includes("max")) {
+    if (numbers && numbers.length >= 1) {
+      const numArray = numbers.map(n => parseFloat(n));
+      const largest = Math.max(...numArray);
+      return largest.toString();
+    }
+  }
+
+  // Otherwise, assume it's asking for a sum
   if (numbers && numbers.length >= 2) {
     const num1 = parseFloat(numbers[0]);
     const num2 = parseFloat(numbers[1]);
     return (num1 + num2).toString();
-  }
-
-  // Extract numbers from the query and return the largest
-  const numbers1 = query.match(/-?\d+\.?\d*/g);
-  if (numbers1 && numbers1.length >= 1) {
-    const numArray = numbers1.map(n => parseFloat(n));
-    const largest = Math.max(...numArray);
-    return largest.toString();
   }
 }
