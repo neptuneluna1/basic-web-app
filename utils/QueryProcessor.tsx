@@ -22,5 +22,12 @@ export default function QueryProcessor(query: string): string {
     const num2 = parseFloat(numbers[1]);
     return (num1 + num2).toString();
   }
-  return "";
+
+  // Extract numbers from the query and return the largest
+  const numbers1 = query.match(/-?\d+\.?\d*/g);
+  if (numbers1 && numbers1.length >= 1) {
+    const numArray = numbers1.map(n => parseFloat(n));
+    const largest = Math.max(...numArray);
+    return largest.toString();
+  }
 }
